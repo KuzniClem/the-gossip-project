@@ -1,0 +1,8 @@
+<h2 class="text-white mb-4">Here are our wonderfull gossips</h2>
+<br><br>
+<% @author_name_with_title_and_id_hashs.each do |author_name_with_title_and_id_hash| %>
+	<h2><%= author_name_with_title_and_id_hash[:author] %></h2>
+	<% title = author_name_with_title_and_id_hash[:title] %>
+	<% gossip_id = author_name_with_title_and_id_hash[:gossip_id] %>
+	<p><%= link_to "#{title}", gossip_path(gossip_id) %></p>
+<% end %>

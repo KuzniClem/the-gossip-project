@@ -1,0 +1,11 @@
+<h1>Gossips#show</h1>
+<p>Find me in app/views/gossips/show.html.erb</p>
+
+
+<h1><%= @cur_gossip.title %></h1>
+<hr>
+<p><%= @cur_gossip.content %></p>
+<hr>
+<p>Creation date : <%= @cur_gossip.created_at %></p>
+<hr>
+<p>From : <%= link_to "#{@cur_gossip.user.first_name} #{@cur_gossip.user.last_name.upcase} (#{@cur_gossip.user.email})", user_path(@cur_gossip) %></p>
