@@ -2,10 +2,32 @@
 <p>Find me in app/views/gossips/show.html.erb</p>
 
 
-<h1><%= @cur_gossip.title %></h1>
+<h1><%= @gossip.title %></h1>
 <hr>
-<p><%= @cur_gossip.content %></p>
+<p><%= @gossip.content %></p>
 <hr>
-<p>Creation date : <%= @cur_gossip.created_at %></p>
+<p>Creation date : <%= @gossip.created_at %></p>
 <hr>
-<p>From : <%= link_to "#{@cur_gossip.user.first_name} #{@cur_gossip.user.last_name.upcase} (#{@cur_gossip.user.email})", user_path(@cur_gossip) %></p>
+<p>From : <%= link_to "#{@gossip.user.first_name} #{@gossip.user.last_name.upcase} (#{@gossip.user.email})", user_path(@gossip) %></p>
+<% if @gossip.errors.any? %>
+<p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+<ul>
+	<% @gossip.errors.full_messages.each do |message| %>
+	<li><%= message %></li>
+	<% end %>
+</ul>
+<% end %>
+
+<% unless current_user == Gossip.find(params[:id]).user %>
+<% else %>
+<div>
+	<button class="btn btn-primary" id='button'>
+		<%= link_to "Delete", gossip_path(@gossip.id), method: :delete %>
+	</button>
+
+	<button class="btn btn-primary" id='button'>
+		<%= link_to "Modify", edit_gossip_path(@gossip.id) %>
+	</button>
+</div>
+<% end %>
+<br><hr><br>
